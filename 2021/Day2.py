@@ -17,8 +17,18 @@ class Day2():
 
         return horiz * depth
 
-    def Part2(self: classmethod):
-       pass
+    def Part2(self: classmethod) -> int:
+        horiz, depth, aim = (0, 0, 0)
+        for cmd in self.input_l:
+            action, value = cmd.split(' ')
+            value = int(value)
+            if action == 'forward': 
+                horiz += value
+                depth += value*aim
+            if action == 'up': aim -= value
+            if action == 'down': aim += value
+
+        return horiz * depth
 
 
 lines = None
@@ -28,4 +38,6 @@ with open('files\day2.txt') as f:
 
 day2 = Day2(lines)
 sol_part1 = day2.Part1()
+sol_part2 = day2.Part2()
 print("Solution Part1: {}".format(sol_part1))
+print("Solution Part2: {}".format(sol_part2))
